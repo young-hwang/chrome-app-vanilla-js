@@ -8,7 +8,7 @@ function onLoginSubmit(event) {
   event.preventDefault()
   const username = loginInput.value
   loginForm.classList.add(HIDDEN_CLASS_NAME)
-  loginUsername.innerText = 'Hello ' + username
+  loginUsername.innerText = `Hello  ${username}`
   loginUsername.classList.remove(HIDDEN_CLASS_NAME)
 }
 
