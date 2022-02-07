@@ -1,11 +1,12 @@
+const TODOS_KEY = 'toDos'
 const toDoForm = document.querySelector('#todo-form')
 const toDoInput = toDoForm.querySelector('input')
 const toDoList = document.querySelector('#todo-list')
 
-const toDos = []
+let toDos = []
 
 function saveToDos() {
-  localStorage.setItem('toDos', JSON.stringify(toDos))
+  localStorage.setItem(TODOS_KEY, JSON.stringify(toDos))
 }
 
 function deleteToDo(event) {
@@ -35,3 +36,11 @@ function handleToDoSubmit(event) {
 }
 
 toDoForm.addEventListener('submit', handleToDoSubmit)
+
+const savedToDos = localStorage.getItem(TODOS_KEY)
+
+if (savedToDos) {
+  const arrToDos = JSON.parse(savedToDos)
+  arrToDos.forEach(paintToDo)
+  toDos = arrToDos
+}
