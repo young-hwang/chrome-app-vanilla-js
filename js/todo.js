@@ -2,8 +2,15 @@ const toDoForm = document.querySelector('#todo-form')
 const toDoInput = toDoForm.querySelector('input')
 const toDoList = document.querySelector('#todo-list')
 
-function deleteToDo() {
-  console.log('delete')
+const toDos = []
+
+function saveToDos() {
+  localStorage.setItem('toDos', JSON.stringify(toDos))
+}
+
+function deleteToDo(event) {
+  const li = event.target.parentElement
+  li.remove()
 }
 
 function paintToDo(toDo) {
@@ -23,6 +30,8 @@ function handleToDoSubmit(event) {
   const newToDo = toDoInput.value
   toDoInput.value = ''
   paintToDo(newToDo)
+  toDos.push(newToDo)
+  saveToDos()
 }
 
 toDoForm.addEventListener('submit', handleToDoSubmit)
